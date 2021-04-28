@@ -19,6 +19,7 @@ const MainDescription = styled.p`
   line-height: 2rem;
   margin-top: 0;
   margin-bottom: 2rem;
+  max-width: 35rem;
 `
 
 const SectionTitle = styled.h1`
@@ -122,8 +123,8 @@ function Home(): ReactElement {
             <span style={{ color: '#FD815A' }}>Done together.</span>
           </MainTagline>
           <MainDescription>
-            Build better a business, faster. Start sharing your work <br />{' '}
-            across your company—in realtime.
+            Build better a business, faster. Start sharing your work across your
+            company—in realtime.
           </MainDescription>
           <Button variant="primary" style={{ marginRight: '16px' }}>
             Try it free
