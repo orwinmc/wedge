@@ -10,23 +10,23 @@ const GlobalStyles = createGlobalStyle`
 
     body {
         font-family: 'Inter', sans-serif;
-        margin: 0em;
+        margin: 0;
     }
 
     @media (max-width: 1099px) {
         html {
-            font-size: 12pt;
+            font-size: 14px;
         }
     }
 
     @media (min-width: 1100px) {
         html {
-            font-size: 14pt;
+            font-size: 16px;
         }
     }
     @media (min-width: 1600px) {
         html {
-            font-size: 18pt;
+            font-size: 18px;
         }
     }
 `
@@ -49,6 +49,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="manifest" href="manifest.json" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
 
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+          rel="stylesheet"
+        />
         <title>orwin.io</title>
       </Head>
       <GlobalStyles />
