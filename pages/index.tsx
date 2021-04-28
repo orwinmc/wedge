@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import Head from 'next/head'
+import Image from 'next/image'
 import styled, { ThemeProvider } from 'styled-components'
 import Button from '../components/Button'
 import theme from '../theme'
@@ -84,7 +85,7 @@ const IconContainer = styled.div`
 const FeatureList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-right: -3rem;
+  //margin-right: -3rem;
 `
 
 const Feature = styled.div`
@@ -105,10 +106,24 @@ const FeatureText = styled.div`
 `
 
 const HeroContainer = styled.div`
+  display: flex;
   background-color: ${(props) => props.theme.palette.background.light};
-  width: 100%;
-  padding: 3rem;
+`
+
+const HeroContent = styled.div`
+  flex: 1;
+  padding: 5rem;
   box-sizing: border-box;
+`
+
+const HeroGraphic = styled.div`
+  background: url(images/users.png);
+  background-size: cover;
+  width: 45%;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `
 
 function Home(): ReactElement {
@@ -119,23 +134,47 @@ function Home(): ReactElement {
           <title>Wedge: Ionic Coding Challenge</title>
         </Head>
         <HeroContainer>
-          <MainTagline>
-            Your best work. <br />
-            <span style={{ color: '#FD815A' }}>Done together.</span>
-          </MainTagline>
-          <MainDescription>
-            Build better a business, faster. Start sharing your work across your
-            company—in realtime.
-          </MainDescription>
-          <Button
-            variant="primary"
-            style={{ marginRight: '1rem', marginBottom: '1rem' }}
-          >
-            Try it free
-          </Button>
-          <Button variant="secondary" style={{ marginBottom: '1rem' }}>
-            Download
-          </Button>
+          <HeroContent>
+            <MainTagline>
+              Your best work. <br />
+              <span style={{ color: '#FD815A' }}>Done together.</span>
+            </MainTagline>
+            <MainDescription>
+              Build better a business, faster. Start sharing your work across
+              your company—in realtime.
+            </MainDescription>
+            <Button
+              variant="primary"
+              style={{ marginRight: '1rem', marginBottom: '1rem' }}
+            >
+              Try it free
+            </Button>
+            <Button variant="secondary" style={{ marginBottom: '1rem' }}>
+              Download
+            </Button>
+          </HeroContent>
+          <HeroGraphic>
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+                backgroundColor: '#002BC4',
+                mixBlendMode: 'normal',
+                opacity: 0,
+              }}
+            >
+              <div
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  backgroundColor: '#5A7EFD',
+
+                  opacity: 1,
+                  mixBlendMode: 'soft-light',
+                }}
+              ></div>
+            </div>
+          </HeroGraphic>
         </HeroContainer>
         <br />
         <br />
