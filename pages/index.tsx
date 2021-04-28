@@ -107,7 +107,8 @@ const FeatureText = styled.div`
 const HeroContainer = styled.div`
   background-color: ${(props) => props.theme.palette.background.light};
   width: 100%;
-  padding: 5rem;
+  padding: 3rem;
+  box-sizing: border-box;
 `
 
 function Home(): ReactElement {
@@ -126,10 +127,15 @@ function Home(): ReactElement {
             Build better a business, faster. Start sharing your work across your
             company—in realtime.
           </MainDescription>
-          <Button variant="primary" style={{ marginRight: '16px' }}>
+          <Button
+            variant="primary"
+            style={{ marginRight: '1rem', marginBottom: '1rem' }}
+          >
             Try it free
           </Button>
-          <Button variant="secondary">Download</Button>
+          <Button variant="secondary" style={{ marginBottom: '1rem' }}>
+            Download
+          </Button>
         </HeroContainer>
         <br />
         <br />
