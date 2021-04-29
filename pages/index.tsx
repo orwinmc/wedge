@@ -82,10 +82,20 @@ const IconContainer = styled.div`
   box-sizing: border-box;
 `
 
+const FeatureContainer = styled.div`
+  padding: 5rem;
+  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
+    padding: 3rem;
+  }
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    padding: 2rem;
+  }
+`
+
 const FeatureList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  //margin-right: -3rem;
+  margin-right: -3rem;
 `
 
 const Feature = styled.div`
@@ -169,75 +179,77 @@ function Home(): ReactElement {
         <br />
         <br />
         <br />
-        <SectionTitle>Features</SectionTitle>
-        <SectionTagline>A better way to work together</SectionTagline>
-        <SectionDescription>
-          Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam
-          voluptatum cupiditate veritatis in accusamus quisquam.
-        </SectionDescription>
-        <br />
-        <FeatureList>
-          <Feature>
-            <FeatureIcon>
-              <IconContainer>
-                <Icon type="speech" />
-              </IconContainer>
-            </FeatureIcon>
-            <FeatureText>
-              <FeatureTagline>Communicate in realtime</FeatureTagline>
-              <FeatureDescription>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Maiores impedit perferendis suscipit eaque, iste dolor
-                cupiditate blanditiis ratione.
-              </FeatureDescription>
-            </FeatureText>
-          </Feature>
-          <Feature>
-            <FeatureIcon>
-              <IconContainer>
-                <Icon type="speech" />
-              </IconContainer>
-            </FeatureIcon>
-            <FeatureText>
-              <FeatureTagline>Communicate in realtime</FeatureTagline>
-              <FeatureDescription>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Maiores impedit perferendis suscipit eaque, iste dolor
-                cupiditate blanditiis ratione.
-              </FeatureDescription>
-            </FeatureText>
-          </Feature>
-          <Feature>
-            <FeatureIcon>
-              <IconContainer>
-                <Icon type="speech" />
-              </IconContainer>
-            </FeatureIcon>
-            <FeatureText>
-              <FeatureTagline>Communicate in realtime</FeatureTagline>
-              <FeatureDescription>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Maiores impedit perferendis suscipit eaque, iste dolor
-                cupiditate blanditiis ratione.
-              </FeatureDescription>
-            </FeatureText>
-          </Feature>
-          <Feature>
-            <FeatureIcon>
-              <IconContainer>
-                <Icon type="speech" />
-              </IconContainer>
-            </FeatureIcon>
-            <FeatureText>
-              <FeatureTagline>Communicate in realtime</FeatureTagline>
-              <FeatureDescription>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Maiores impedit perferendis suscipit eaque, iste dolor
-                cupiditate blanditiis ratione.
-              </FeatureDescription>
-            </FeatureText>
-          </Feature>
-        </FeatureList>
+        <FeatureContainer>
+          <SectionTitle>Features</SectionTitle>
+          <SectionTagline>A better way to work together</SectionTagline>
+          <SectionDescription>
+            Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam
+            voluptatum cupiditate veritatis in accusamus quisquam.
+          </SectionDescription>
+          <br />
+          <FeatureList>
+            <Feature>
+              <FeatureIcon>
+                <IconContainer>
+                  <Icon type="speech" />
+                </IconContainer>
+              </FeatureIcon>
+              <FeatureText>
+                <FeatureTagline>Communicate in realtime</FeatureTagline>
+                <FeatureDescription>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Maiores impedit perferendis suscipit eaque, iste dolor
+                  cupiditate blanditiis ratione.
+                </FeatureDescription>
+              </FeatureText>
+            </Feature>
+            <Feature>
+              <FeatureIcon>
+                <IconContainer>
+                  <Icon type="speech" />
+                </IconContainer>
+              </FeatureIcon>
+              <FeatureText>
+                <FeatureTagline>Communicate in realtime</FeatureTagline>
+                <FeatureDescription>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Maiores impedit perferendis suscipit eaque, iste dolor
+                  cupiditate blanditiis ratione.
+                </FeatureDescription>
+              </FeatureText>
+            </Feature>
+            <Feature>
+              <FeatureIcon>
+                <IconContainer>
+                  <Icon type="speech" />
+                </IconContainer>
+              </FeatureIcon>
+              <FeatureText>
+                <FeatureTagline>Communicate in realtime</FeatureTagline>
+                <FeatureDescription>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Maiores impedit perferendis suscipit eaque, iste dolor
+                  cupiditate blanditiis ratione.
+                </FeatureDescription>
+              </FeatureText>
+            </Feature>
+            <Feature>
+              <FeatureIcon>
+                <IconContainer>
+                  <Icon type="speech" />
+                </IconContainer>
+              </FeatureIcon>
+              <FeatureText>
+                <FeatureTagline>Communicate in realtime</FeatureTagline>
+                <FeatureDescription>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Maiores impedit perferendis suscipit eaque, iste dolor
+                  cupiditate blanditiis ratione.
+                </FeatureDescription>
+              </FeatureText>
+            </Feature>
+          </FeatureList>
+        </FeatureContainer>
       </div>
     </ThemeProvider>
   )

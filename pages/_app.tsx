@@ -26,12 +26,6 @@ const GlobalStyles = createGlobalStyle`
             font-size: 14px;
         }
     }
-
-    @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
-        html {
-            font-size: 13px;
-        }
-    }
 `
 
 function MyApp({ Component, pageProps }: AppProps) {
