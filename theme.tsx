@@ -19,6 +19,12 @@ const theme = {
       light: '#F9FAFD',
     },
   },
+  breakpoints: {
+    sm: '550px',
+    md: '800px',
+    lg: '1100px',
+    xl: '1600px',
+  },
 }
 
 export default theme

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
+import Link from 'next/link'
 import styled, { ThemeProvider } from 'styled-components'
 import Button from '../components/Button'
 import theme from '../theme'
@@ -10,7 +10,7 @@ const MainTagline = styled.h1`
   color: #2b2f35;
   font-size: 4rem;
   line-height: 4rem;
-  margin-top: 0;
+  margin-top: 6rem;
   margin-bottom: 1.5rem;
 `
 
@@ -92,7 +92,7 @@ const Feature = styled.div`
   width: 50%;
   display: flex;
 
-  @media (max-width: 800px) {
+  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
     width: 100%;
   }
 `
@@ -107,21 +107,27 @@ const FeatureText = styled.div`
 
 const HeroContainer = styled.div`
   display: flex;
-  background-color: ${(props) => props.theme.palette.background.light};
 `
 
 const HeroContent = styled.div`
-  flex: 1;
+  background-color: ${(props) => props.theme.palette.background.light};
+  flex: 5 2 50rem;
   padding: 5rem;
-  box-sizing: border-box;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
+    padding: 3rem;
+  }
+  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+    padding: 2rem;
+  }
 `
 
 const HeroGraphic = styled.div`
+  flex: 4 3 40rem;
   background: url(images/users.png);
   background-size: cover;
-  width: 45%;
 
-  @media (max-width: 1000px) {
+  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
     display: none;
   }
 `
@@ -133,6 +139,7 @@ function Home(): ReactElement {
         <Head>
           <title>Wedge: Ionic Coding Challenge</title>
         </Head>
+
         <HeroContainer>
           <HeroContent>
             <MainTagline>
@@ -153,28 +160,7 @@ function Home(): ReactElement {
               Download
             </Button>
           </HeroContent>
-          <HeroGraphic>
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                backgroundColor: '#002BC4',
-                mixBlendMode: 'normal',
-                opacity: 0,
-              }}
-            >
-              <div
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  backgroundColor: '#5A7EFD',
-
-                  opacity: 1,
-                  mixBlendMode: 'soft-light',
-                }}
-              ></div>
-            </div>
-          </HeroGraphic>
+          <HeroGraphic />
         </HeroContainer>
         <br />
         <br />
@@ -261,49 +247,76 @@ export default Home
 
 /*
 
-<div
-          style={{
-            backgroundColor: 'yellow',
-            width: '50%',
-            display: 'flex',
-          }}
-        >
-          <div style={{ marginRight: '1.5rem' }}>
-            <IconContainer>
-              <Icon type="speech" />
-            </IconContainer>
-          </div>
-          <div style={{ marginRight: '1.5rem' }}>
-            <FeatureTagline>Communicate in realtime</FeatureTagline>
-            <FeatureDescription>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores
-              impedit perferendis suscipit eaque, iste dolor cupiditate
-              blanditiis ratione.
-            </FeatureDescription>
-          </div>
-        </div>
-
-        <div
-          style={{
-            backgroundColor: 'yellow',
-            width: '50%',
-            display: 'flex',
-          }}
-        >
-          <div style={{ marginRight: '1.5rem' }}>
-            <IconContainer>
-              <Icon type="speech" />
-            </IconContainer>
-          </div>
-          <div style={{ marginRight: '1.5rem' }}>
-            <FeatureTagline>Communicate in realtime</FeatureTagline>
-            <FeatureDescription>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores
-              impedit perferendis suscipit eaque, iste dolor cupiditate
-              blanditiis ratione.
-            </FeatureDescription>
-          </div>
-        </div>
-
-
+<nav
+            style={{
+              width: '100%',
+              position: 'absolute',
+              display: 'flex',
+              left: 0,
+              padding: '2.5rem',
+              lineHeight: '1rem',
+              fontSize: '1rem',
+              boxSizing: 'border-box',
+            }}
+          >
+            <div style={{ flex: 1 }}>
+              <Link href="/product">
+                <a
+                  style={{
+                    color: '#7B8798',
+                    fontSize: '1rem',
+                    margin: '1.25em',
+                    marginLeft: '8rem',
+                    textDecoration: 'none',
+                  }}
+                >
+                  Product
+                </a>
+              </Link>
+              <Link href="/features">
+                <a
+                  style={{
+                    color: '#7B8798',
+                    fontSize: '1rem',
+                    margin: '1.25em',
+                    textDecoration: 'none',
+                  }}
+                >
+                  Features
+                </a>
+              </Link>
+              <Link href="/enterprise">
+                <a
+                  style={{
+                    color: '#7B8798',
+                    fontSize: '1rem',
+                    margin: '1.25em',
+                    textDecoration: 'none',
+                  }}
+                >
+                  Enterprise
+                </a>
+              </Link>
+              <Link href="/company">
+                <a
+                  style={{
+                    color: '#7B8798',
+                    fontSize: '1rem',
+                    margin: '1.25em',
+                    textDecoration: 'none',
+                  }}
+                >
+                  Company
+                </a>
+              </Link>
+            </div>
+            <div style={{ textAlign: 'right' }}>
+              <Link href="/signin">
+                <a>Sign In</a>
+              </Link>
+              <Link href="/download">
+                <a>Download</a>
+              </Link>
+            </div>
+          </nav>
 */

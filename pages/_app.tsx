@@ -1,11 +1,13 @@
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import React from 'react'
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import theme from '../theme'
 
 const GlobalStyles = createGlobalStyle`
     html {
         -webkit-text-size-adjust: 100%;
+        font-size:18px;
     }
 
     body {
@@ -13,20 +15,21 @@ const GlobalStyles = createGlobalStyle`
         margin: 0;
     }
 
-    @media (max-width: 1099px) {
+    @media (max-width: ${(props) => props.theme.breakpoints.xl}) {
+        html {
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: ${(props) => props.theme.breakpoints.lg}) {
         html {
             font-size: 14px;
         }
     }
 
-    @media (min-width: 1100px) {
+    @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
         html {
-            font-size: 16px;
-        }
-    }
-    @media (min-width: 1600px) {
-        html {
-            font-size: 18px;
+            font-size: 12px;
         }
     }
 `
@@ -55,7 +58,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <title>orwin.io</title>
       </Head>
-      <GlobalStyles />
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+      </ThemeProvider>
       <Component {...pageProps} />
     </>
   )
