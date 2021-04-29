@@ -96,6 +96,10 @@ const FeatureList = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-right: -3rem;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-right: 0;
+  }
 `
 
 const Feature = styled.div`
@@ -113,6 +117,10 @@ const FeatureIcon = styled.div`
 
 const FeatureText = styled.div`
   margin-right: 3rem;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
+    margin-right: 0;
+  }
 `
 
 const HeroContainer = styled.div`
