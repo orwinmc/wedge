@@ -29,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
 
     @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
         html {
-            font-size: 12px;
+            font-size: 13px;
         }
     }
 `
