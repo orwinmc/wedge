@@ -1,10 +1,11 @@
 import React, { ReactElement } from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
 import styled, { ThemeProvider } from 'styled-components'
 import Button from '../components/Button'
 import theme from '../theme'
 import Icon from '../components/Icons'
+import { uid } from 'uid'
+import Navigation from '../components/Navigation'
 
 const MainTagline = styled.h1`
   color: #2b2f35;
@@ -82,13 +83,7 @@ const IconContainer = styled.div`
   box-sizing: border-box;
 `
 
-const LogoContainer = styled.div`
-  color: #fd815a;
-  width: 2.5rem;
-  height: 2.5rem;
-`
-
-const FeatureContainer = styled.div`
+const SectionContainer = styled.div`
   padding: 5rem;
   @media (max-width: ${(props) => props.theme.breakpoints.md}) {
     padding: 3rem;
@@ -156,31 +151,43 @@ const HeroGraphic = styled.div`
   }
 `
 
-const Navigation = styled.nav`
-  width: 100%;
-  position: absolute;
-  display: flex;
-  left: 0;
-  padding: 1rem;
-  line-height: 1rem;
-  font-size: 1rem;
-  box-sizing: border-box;
-`
+interface Feature {
+  id: string
+  icon: string
+  tagline: string
+  description: string
+}
 
-const NavigationLeft = styled.div`
-  display: flex;
-  flex: 1;
-  align-items: center;
-`
-
-const NavigationLeftLink = styled.a`
-  color: #7b8798;
-  font-size: 1rem;
-  margin: 1.25em;
-  text-decoration: none;
-`
-
-const links = {}
+const features: Feature[] = [
+  {
+    id: uid(),
+    icon: 'message',
+    tagline: 'Communicate in realtime',
+    description:
+      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+  },
+  {
+    id: uid(),
+    icon: 'rocket',
+    tagline: 'Do your best work',
+    description:
+      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+  },
+  {
+    id: uid(),
+    icon: 'clock',
+    tagline: 'Avoid costly revisions',
+    description:
+      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+  },
+  {
+    id: uid(),
+    icon: 'cloud',
+    tagline: 'Everything in one place',
+    description:
+      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+  },
+]
 
 function Home(): ReactElement {
   return (
@@ -189,29 +196,7 @@ function Home(): ReactElement {
         <Head>
           <title>Wedge: Ionic Coding Challenge</title>
         </Head>
-        <Navigation>
-          <NavigationLeft>
-            <Link href="/">
-              <NavigationLeftLink>
-                <LogoContainer>
-                  <Icon type="logo" />
-                </LogoContainer>
-              </NavigationLeftLink>
-            </Link>
-            <Link href="/products">
-              <NavigationLeftLink>Products</NavigationLeftLink>
-            </Link>
-            <Link href="/features">
-              <NavigationLeftLink>Features</NavigationLeftLink>
-            </Link>
-            <Link href="/enterprise">
-              <NavigationLeftLink>Enterprise</NavigationLeftLink>
-            </Link>
-            <Link href="/company">
-              <NavigationLeftLink>Company</NavigationLeftLink>
-            </Link>
-          </NavigationLeft>
-        </Navigation>
+        <Navigation />
 
         <HeroContainer>
           <HeroContent>
@@ -242,7 +227,7 @@ function Home(): ReactElement {
         <br />
         <br />
         <br />
-        <FeatureContainer>
+        <SectionContainer>
           <SectionTitle>Features</SectionTitle>
           <SectionTagline>A better way to work together</SectionTagline>
           <SectionDescription>
@@ -251,68 +236,25 @@ function Home(): ReactElement {
           </SectionDescription>
           <br />
           <FeatureList>
-            <Feature>
-              <FeatureIcon>
-                <IconContainer>
-                  <Icon type="message" />
-                </IconContainer>
-              </FeatureIcon>
-              <FeatureText>
-                <FeatureTagline>Communicate in realtime</FeatureTagline>
-                <FeatureDescription>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Maiores impedit perferendis suscipit eaque, iste dolor
-                  cupiditate blanditiis ratione.
-                </FeatureDescription>
-              </FeatureText>
-            </Feature>
-            <Feature>
-              <FeatureIcon>
-                <IconContainer>
-                  <Icon type="rocket" />
-                </IconContainer>
-              </FeatureIcon>
-              <FeatureText>
-                <FeatureTagline>Communicate in realtime</FeatureTagline>
-                <FeatureDescription>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Maiores impedit perferendis suscipit eaque, iste dolor
-                  cupiditate blanditiis ratione.
-                </FeatureDescription>
-              </FeatureText>
-            </Feature>
-            <Feature>
-              <FeatureIcon>
-                <IconContainer>
-                  <Icon type="clock" />
-                </IconContainer>
-              </FeatureIcon>
-              <FeatureText>
-                <FeatureTagline>Communicate in realtime</FeatureTagline>
-                <FeatureDescription>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Maiores impedit perferendis suscipit eaque, iste dolor
-                  cupiditate blanditiis ratione.
-                </FeatureDescription>
-              </FeatureText>
-            </Feature>
-            <Feature>
-              <FeatureIcon>
-                <IconContainer>
-                  <Icon type="cloud" />
-                </IconContainer>
-              </FeatureIcon>
-              <FeatureText>
-                <FeatureTagline>Communicate in realtime</FeatureTagline>
-                <FeatureDescription>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Maiores impedit perferendis suscipit eaque, iste dolor
-                  cupiditate blanditiis ratione.
-                </FeatureDescription>
-              </FeatureText>
-            </Feature>
+            {features.map((feature) => {
+              return (
+                <Feature key={uid()}>
+                  <FeatureIcon>
+                    <IconContainer>
+                      <Icon type={feature.icon} />
+                    </IconContainer>
+                  </FeatureIcon>
+                  <FeatureText>
+                    <FeatureTagline>{feature.tagline}</FeatureTagline>
+                    <FeatureDescription>
+                      {feature.description}
+                    </FeatureDescription>
+                  </FeatureText>
+                </Feature>
+              )
+            })}
           </FeatureList>
-        </FeatureContainer>
+        </SectionContainer>
       </div>
     </ThemeProvider>
   )
