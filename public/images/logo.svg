@@ -1,0 +1,17 @@
+
+
+<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 0 14
+  l 20 22
+  l 20 -22
+  h -10
+  a 10 10 0 0 1 -20 0
+  l 10 -10
+  l 10 10
+  z"/>
+</svg>
+
+
+<!--<svg style="border:1px solid black" viewBox="0 0 200 200" fill="#ff0000" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 0 0 l 20 -22 l 20 22 z" />
+</svg>-->

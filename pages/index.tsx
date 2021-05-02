@@ -75,11 +75,17 @@ const FeatureDescription = styled.p`
 const IconContainer = styled.div`
   background-color: #fd815a;
   color: ${(props) => props.theme.palette.common.white};
-  padding: 0.6875rem;
+  padding: 0.6rem;
   width: 3rem;
   border-radius: 3rem;
   height: 3rem;
   box-sizing: border-box;
+`
+
+const LogoContainer = styled.div`
+  color: #fd815a;
+  width: 2.5rem;
+  height: 2.5rem;
 `
 
 const FeatureContainer = styled.div`
@@ -150,6 +156,32 @@ const HeroGraphic = styled.div`
   }
 `
 
+const Navigation = styled.nav`
+  width: 100%;
+  position: absolute;
+  display: flex;
+  left: 0;
+  padding: 1rem;
+  line-height: 1rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+`
+
+const NavigationLeft = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+`
+
+const NavigationLeftLink = styled.a`
+  color: #7b8798;
+  font-size: 1rem;
+  margin: 1.25em;
+  text-decoration: none;
+`
+
+const links = {}
+
 function Home(): ReactElement {
   return (
     <ThemeProvider theme={theme}>
@@ -157,6 +189,29 @@ function Home(): ReactElement {
         <Head>
           <title>Wedge: Ionic Coding Challenge</title>
         </Head>
+        <Navigation>
+          <NavigationLeft>
+            <Link href="/">
+              <NavigationLeftLink>
+                <LogoContainer>
+                  <Icon type="logo" />
+                </LogoContainer>
+              </NavigationLeftLink>
+            </Link>
+            <Link href="/products">
+              <NavigationLeftLink>Products</NavigationLeftLink>
+            </Link>
+            <Link href="/features">
+              <NavigationLeftLink>Features</NavigationLeftLink>
+            </Link>
+            <Link href="/enterprise">
+              <NavigationLeftLink>Enterprise</NavigationLeftLink>
+            </Link>
+            <Link href="/company">
+              <NavigationLeftLink>Company</NavigationLeftLink>
+            </Link>
+          </NavigationLeft>
+        </Navigation>
 
         <HeroContainer>
           <HeroContent>
@@ -199,7 +254,7 @@ function Home(): ReactElement {
             <Feature>
               <FeatureIcon>
                 <IconContainer>
-                  <Icon type="speech" />
+                  <Icon type="message" />
                 </IconContainer>
               </FeatureIcon>
               <FeatureText>
@@ -214,7 +269,7 @@ function Home(): ReactElement {
             <Feature>
               <FeatureIcon>
                 <IconContainer>
-                  <Icon type="speech" />
+                  <Icon type="rocket" />
                 </IconContainer>
               </FeatureIcon>
               <FeatureText>
@@ -229,7 +284,7 @@ function Home(): ReactElement {
             <Feature>
               <FeatureIcon>
                 <IconContainer>
-                  <Icon type="speech" />
+                  <Icon type="clock" />
                 </IconContainer>
               </FeatureIcon>
               <FeatureText>
@@ -244,7 +299,7 @@ function Home(): ReactElement {
             <Feature>
               <FeatureIcon>
                 <IconContainer>
-                  <Icon type="speech" />
+                  <Icon type="cloud" />
                 </IconContainer>
               </FeatureIcon>
               <FeatureText>
@@ -264,79 +319,3 @@ function Home(): ReactElement {
 }
 
 export default Home
-
-/*
-
-<nav
-            style={{
-              width: '100%',
-              position: 'absolute',
-              display: 'flex',
-              left: 0,
-              padding: '2.5rem',
-              lineHeight: '1rem',
-              fontSize: '1rem',
-              boxSizing: 'border-box',
-            }}
-          >
-            <div style={{ flex: 1 }}>
-              <Link href="/product">
-                <a
-                  style={{
-                    color: '#7B8798',
-                    fontSize: '1rem',
-                    margin: '1.25em',
-                    marginLeft: '8rem',
-                    textDecoration: 'none',
-                  }}
-                >
-                  Product
-                </a>
-              </Link>
-              <Link href="/features">
-                <a
-                  style={{
-                    color: '#7B8798',
-                    fontSize: '1rem',
-                    margin: '1.25em',
-                    textDecoration: 'none',
-                  }}
-                >
-                  Features
-                </a>
-              </Link>
-              <Link href="/enterprise">
-                <a
-                  style={{
-                    color: '#7B8798',
-                    fontSize: '1rem',
-                    margin: '1.25em',
-                    textDecoration: 'none',
-                  }}
-                >
-                  Enterprise
-                </a>
-              </Link>
-              <Link href="/company">
-                <a
-                  style={{
-                    color: '#7B8798',
-                    fontSize: '1rem',
-                    margin: '1.25em',
-                    textDecoration: 'none',
-                  }}
-                >
-                  Company
-                </a>
-              </Link>
-            </div>
-            <div style={{ textAlign: 'right' }}>
-              <Link href="/signin">
-                <a>Sign In</a>
-              </Link>
-              <Link href="/download">
-                <a>Download</a>
-              </Link>
-            </div>
-          </nav>
-*/
