@@ -22,6 +22,7 @@ const theme = {
     },
   },
   breakpoints: {
+    xs: 400,
     sm: 550,
     md: 860,
     lg: 1100,
