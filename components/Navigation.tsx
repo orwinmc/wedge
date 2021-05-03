@@ -105,7 +105,7 @@ const SideNavigationLink = styled.a`
   display: inline-block;
   color: ${(props) => props.theme.palette.text.lightest};
   width: 50%;
-  margin-top: 3rem;
+  margin-top: 2rem;
   text-align: center;
   font-size: 1.5rem;
   text-decoration: none;

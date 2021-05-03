@@ -27,7 +27,7 @@ const GlobalStyles = createGlobalStyle`
         }
     }
 
-    @media (max-width: ${(props) => props.theme.breakpoints.xs + 'px'}) {
+    @media (max-width: ${(props) => props.theme.breakpoints.sm + 'px'}) {
         html {
             font-size: 13px;
         }
