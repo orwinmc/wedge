@@ -15,13 +15,13 @@ const GlobalStyles = createGlobalStyle`
         margin: 0;
     }
 
-    @media (max-width: ${(props) => props.theme.breakpoints.xl}) {
+    @media (max-width: ${(props) => props.theme.breakpoints.xl + 'px'}) {
         html {
             font-size: 16px;
         }
     }
 
-    @media (max-width: ${(props) => props.theme.breakpoints.lg}) {
+    @media (max-width: ${(props) => props.theme.breakpoints.lg + 'px'}) {
         html {
             font-size: 14px;
         }

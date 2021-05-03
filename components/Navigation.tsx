@@ -8,51 +8,29 @@ const NavigationContainer = styled.nav`
   width: 100%;
   position: absolute;
   display: flex;
-  padding: 1rem;
   line-height: 1rem;
   font-size: 1rem;
   box-sizing: border-box;
 
-  padding-left: 5rem;
-  padding-right: 5rem;
+  padding: 1rem 5rem;
 
-  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
-    padding-left: 3rem;
-    padding-right: 3rem;
+  @media (max-width: ${(props) => props.theme.breakpoints.md + 'px'}) {
+    padding: 1rem 3rem;
   }
-  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
-    padding-left: 2rem;
-    padding-right: 2rem;
+  @media (max-width: ${(props) => props.theme.breakpoints.sm + 'px'}) {
+    padding: 1rem 2rem;
   }
-
-  /*@media (max-width: ${(props) => props.theme.breakpoints.md}) {
-    width: 62%;
-    flex-direction: column;
-    background-color: red;
-    height: 100vh;
-    transform: translateX(-50%);
-  }*/
 `
 
 const NavigationLeft = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
-
-  /*@media (max-width: ${(props) => props.theme.breakpoints.md}) {
-    flex-direction: column;
-    background-color: yellow;
-  }*/
 `
 const NavigationRight = styled.div`
   display: flex;
   align-items: center;
   text-align: 'right';
-
-  /*@media (max-width: ${(props) => props.theme.breakpoints.md}) {
-    flex-direction: column;
-    background-color: yellow;
-  }*/
 `
 
 const NavigationLeftLink = styled.a`
@@ -97,6 +75,7 @@ const MenuButton = styled.button`
   background: rgba(0, 0, 0, 0);
   border: none;
   font-size: 1.8rem;
+  padding: 0;
 
   transition: filter 400ms;
   cursor: pointer;
@@ -110,10 +89,26 @@ const MenuButton = styled.button`
 const SideNavigationContainer = styled.nav`
   width: 100%;
   position: fixed;
-  flex-direction: column;
+  display: 'flex';
   background-color: #ffffff;
   height: 100vh;
-  transform: translateX(-100%);
+  transform: ${(props) =>
+    props.isOpen ? 'translateX(0%)' : 'translateX(-100%)'};
+
+  transition: transform 800ms ease-in-out;
+`
+
+const SideNavigationLink = styled.a`
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.5rem;
+  width: 50%;
+  margin-top: 3rem;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.sm + 'px'}) {
+    width: 100%;
+  }
 `
 
 function Navigation(): ReactElement {
@@ -122,69 +117,104 @@ function Navigation(): ReactElement {
 
   useEffect(() => {
     function handleResize() {
-      setIsFolded(window.innerWidth <= 800)
+      setIsFolded(window.innerWidth <= theme.breakpoints.md)
     }
+
+    handleResize()
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  console.log(isCondensed)
+  console.log(isOpen)
 
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <NavigationLeft>
-          <Link href="/">
-            <NavigationLeftLink style={{ marginLeft: 0 }}>
-              <LogoContainer>
-                <Icon type="logo" />
-              </LogoContainer>
-            </NavigationLeftLink>
-          </Link>
-          {!isCondensed ? (
-            <>
-              <Link href="/products">
-                <NavigationLeftLink>Products</NavigationLeftLink>
-              </Link>
-              <Link href="/features">
-                <NavigationLeftLink>Features</NavigationLeftLink>
-              </Link>
-              <Link href="/enterprise">
-                <NavigationLeftLink>Enterprise</NavigationLeftLink>
-              </Link>
-              <Link href="/company">
-                <NavigationLeftLink>Company</NavigationLeftLink>
-              </Link>
-            </>
-          ) : (
-            ''
-          )}
-        </NavigationLeft>
-        <NavigationRight>
-          {!isCondensed ? (
-            <>
-              <Link href="/signin">
-                <NavigationRightLink>Sign In</NavigationRightLink>
-              </Link>
-              <Link href="/download">
-                <NavigationRightLink style={{ marginRight: 0 }}>
-                  Download
-                </NavigationRightLink>
-              </Link>
-            </>
-          ) : (
-            <MenuButton>☰</MenuButton>
-          )}
-        </NavigationRight>
-      </NavigationContainer>
+      {isCondensed !== undefined ? (
+        <NavigationContainer>
+          <NavigationLeft>
+            <Link href="/">
+              <NavigationLeftLink style={{ marginLeft: 0 }}>
+                <LogoContainer>
+                  <Icon type="logo" />
+                </LogoContainer>
+              </NavigationLeftLink>
+            </Link>
+            {!isCondensed ? (
+              <>
+                <Link href="/">
+                  <NavigationLeftLink>Products</NavigationLeftLink>
+                </Link>
+                <Link href="/">
+                  <NavigationLeftLink>Features</NavigationLeftLink>
+                </Link>
+                <Link href="/">
+                  <NavigationLeftLink>Enterprise</NavigationLeftLink>
+                </Link>
+                <Link href="/">
+                  <NavigationLeftLink>Company</NavigationLeftLink>
+                </Link>
+              </>
+            ) : (
+              ''
+            )}
+          </NavigationLeft>
+          <NavigationRight>
+            {!isCondensed ? (
+              <>
+                <Link href="/">
+                  <NavigationRightLink>Sign In</NavigationRightLink>
+                </Link>
+                <Link href="/">
+                  <NavigationRightLink style={{ marginRight: 0 }}>
+                    Download
+                  </NavigationRightLink>
+                </Link>
+              </>
+            ) : (
+              <MenuButton onClick={() => setIsOpen(!isOpen)}>☰</MenuButton>
+            )}
+          </NavigationRight>
+        </NavigationContainer>
+      ) : (
+        ''
+      )}
 
-      <SideNavigationContainer>
-        <Link href="/products">
-          <NavigationLeftLink>Products</NavigationLeftLink>
+      <SideNavigationContainer isOpen={isOpen}>
+        <NavigationContainer>
+          <NavigationLeft>
+            <Link href="/">
+              <NavigationLeftLink style={{ marginLeft: 0 }}>
+                <LogoContainer>
+                  <Icon type="logo" />
+                </LogoContainer>
+              </NavigationLeftLink>
+            </Link>
+          </NavigationLeft>
+          <NavigationRight>
+            <MenuButton onClick={() => setIsOpen(!isOpen)}>✕</MenuButton>
+          </NavigationRight>
+        </NavigationContainer>
+        <br />
+        <br />
+        <br />
+        <Link href="/">
+          <SideNavigationLink>Products</SideNavigationLink>
         </Link>
-        <Link href="/features">
-          <NavigationLeftLink>Features</NavigationLeftLink>
+        <Link href="/">
+          <SideNavigationLink>Features</SideNavigationLink>
+        </Link>
+        <Link href="/">
+          <SideNavigationLink>Features</SideNavigationLink>
+        </Link>
+        <Link href="/">
+          <SideNavigationLink>Features</SideNavigationLink>
+        </Link>
+        <Link href="/">
+          <SideNavigationLink>Features</SideNavigationLink>
+        </Link>
+        <Link href="/">
+          <SideNavigationLink>Features</SideNavigationLink>
         </Link>
       </SideNavigationContainer>
     </ThemeProvider>

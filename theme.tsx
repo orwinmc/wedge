@@ -20,10 +20,10 @@ const theme = {
     },
   },
   breakpoints: {
-    sm: '550px',
-    md: '800px',
-    lg: '1100px',
-    xl: '1600px',
+    sm: 550,
+    md: 860,
+    lg: 1100,
+    xl: 1600,
   },
 }
 

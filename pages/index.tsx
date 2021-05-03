@@ -84,12 +84,13 @@ const IconContainer = styled.div`
 `
 
 const SectionContainer = styled.div`
-  padding: 5rem;
-  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
-    padding: 3rem;
+  padding: 10rem 5rem;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.md + 'px'}) {
+    padding: 10rem 3rem;
   }
-  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
-    padding: 2rem;
+  @media (max-width: ${(props) => props.theme.breakpoints.sm + 'px'}) {
+    padding: 10rem 2rem;
   }
 `
 
@@ -98,7 +99,7 @@ const FeatureList = styled.div`
   flex-wrap: wrap;
   margin-right: -3rem;
 
-  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
+  @media (max-width: ${(props) => props.theme.breakpoints.md + 'px'}) {
     margin-right: 0;
   }
 `
@@ -107,7 +108,7 @@ const Feature = styled.div`
   width: 50%;
   display: flex;
 
-  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
+  @media (max-width: ${(props) => props.theme.breakpoints.md + 'px'}) {
     width: 100%;
   }
 `
@@ -119,7 +120,7 @@ const FeatureIcon = styled.div`
 const FeatureText = styled.div`
   margin-right: 3rem;
 
-  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
+  @media (max-width: ${(props) => props.theme.breakpoints.md + 'px'}) {
     margin-right: 0;
   }
 `
@@ -130,23 +131,23 @@ const HeroContainer = styled.div`
 
 const HeroContent = styled.div`
   background-color: ${(props) => props.theme.palette.background.light};
-  flex: 5 2 50rem;
+  flex: 5 4 50rem;
   padding: 5rem;
 
-  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
+  @media (max-width: ${(props) => props.theme.breakpoints.md + 'px'}) {
     padding: 3rem;
   }
-  @media (max-width: ${(props) => props.theme.breakpoints.sm}) {
+  @media (max-width: ${(props) => props.theme.breakpoints.sm + 'px'}) {
     padding: 2rem;
   }
 `
 
 const HeroGraphic = styled.div`
-  flex: 4 3 40rem;
+  flex: 4 5 40rem;
   background: url(images/users.png);
   background-size: cover;
 
-  @media (max-width: ${(props) => props.theme.breakpoints.md}) {
+  @media (max-width: ${(props) => props.theme.breakpoints.md + 'px'}) {
     display: none;
   }
 `
@@ -192,70 +193,60 @@ const features: Feature[] = [
 function Home(): ReactElement {
   return (
     <ThemeProvider theme={theme}>
-      <div>
-        <Head>
-          <title>Wedge: Ionic Coding Challenge</title>
-        </Head>
-        <Navigation />
+      <Head>
+        <title>Wedge: Ionic Coding Challenge</title>
+      </Head>
+      <Navigation />
 
-        <HeroContainer>
-          <HeroContent>
-            <MainTagline>
-              Your best work. <br />
-              <span style={{ color: '#FD815A' }}>Done together.</span>
-            </MainTagline>
-            <MainDescription>
-              Build better a business, faster. Start sharing your work across
-              your company—in realtime.
-            </MainDescription>
-            <Button
-              variant="primary"
-              style={{ marginRight: '1rem', marginBottom: '1rem' }}
-            >
-              Try it free
-            </Button>
-            <Button variant="secondary" style={{ marginBottom: '1rem' }}>
-              Download
-            </Button>
-          </HeroContent>
-          <HeroGraphic />
-        </HeroContainer>
+      <HeroContainer>
+        <HeroContent>
+          <MainTagline>
+            Your best work. <br />
+            <span style={{ color: '#FD815A' }}>Done together.</span>
+          </MainTagline>
+          <MainDescription>
+            Build better a business, faster. Start sharing your work across your
+            company—in realtime.
+          </MainDescription>
+          <Button
+            variant="primary"
+            style={{ marginRight: '1rem', marginBottom: '1rem' }}
+          >
+            Try it free
+          </Button>
+          <Button variant="secondary" style={{ marginBottom: '1rem' }}>
+            Download
+          </Button>
+        </HeroContent>
+        <HeroGraphic />
+      </HeroContainer>
+
+      <SectionContainer>
+        <SectionTitle>Features</SectionTitle>
+        <SectionTagline>A better way to work together</SectionTagline>
+        <SectionDescription>
+          Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam
+          voluptatum cupiditate veritatis in accusamus quisquam.
+        </SectionDescription>
         <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <SectionContainer>
-          <SectionTitle>Features</SectionTitle>
-          <SectionTagline>A better way to work together</SectionTagline>
-          <SectionDescription>
-            Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam
-            voluptatum cupiditate veritatis in accusamus quisquam.
-          </SectionDescription>
-          <br />
-          <FeatureList>
-            {features.map((feature) => {
-              return (
-                <Feature key={uid()}>
-                  <FeatureIcon>
-                    <IconContainer>
-                      <Icon type={feature.icon} />
-                    </IconContainer>
-                  </FeatureIcon>
-                  <FeatureText>
-                    <FeatureTagline>{feature.tagline}</FeatureTagline>
-                    <FeatureDescription>
-                      {feature.description}
-                    </FeatureDescription>
-                  </FeatureText>
-                </Feature>
-              )
-            })}
-          </FeatureList>
-        </SectionContainer>
-      </div>
+        <FeatureList>
+          {features.map((feature) => {
+            return (
+              <Feature key={uid()}>
+                <FeatureIcon>
+                  <IconContainer>
+                    <Icon type={feature.icon} />
+                  </IconContainer>
+                </FeatureIcon>
+                <FeatureText>
+                  <FeatureTagline>{feature.tagline}</FeatureTagline>
+                  <FeatureDescription>{feature.description}</FeatureDescription>
+                </FeatureText>
+              </Feature>
+            )
+          })}
+        </FeatureList>
+      </SectionContainer>
     </ThemeProvider>
   )
 }
