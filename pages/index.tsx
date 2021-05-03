@@ -49,6 +49,7 @@ const features: Feature[] = [
 
 const HeroContainer = styled.div`
   display: flex;
+  width: '100%';
 `
 
 const HeroContent = styled.div`

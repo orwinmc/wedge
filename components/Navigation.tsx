@@ -210,7 +210,6 @@ function Navigation(): ReactElement {
         <br />
         <br />
         <br />
-        <br />
         <Link href="/">
           <SideNavigationLink>Products</SideNavigationLink>
         </Link>
