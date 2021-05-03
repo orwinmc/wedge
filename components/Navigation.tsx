@@ -4,14 +4,15 @@ import styled, { ThemeProvider } from 'styled-components'
 import theme from '../theme'
 import Icon from '../components/Icons'
 
-const NavigationContainer = styled.nav`
-  width: 100%;
-  position: absolute;
-  display: flex;
-  line-height: 1rem;
-  font-size: 1rem;
-  box-sizing: border-box;
+// Main Navigation Styles
 
+const MainNavigationContainer = styled.nav`
+  display: flex;
+  position: absolute;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1rem;
+  box-sizing: border-box;
   padding: 1rem 5rem;
 
   @media (max-width: ${(props) => props.theme.breakpoints.md + 'px'}) {
@@ -24,8 +25,8 @@ const NavigationContainer = styled.nav`
 
 const NavigationLeft = styled.div`
   display: flex;
-  flex: 1;
   align-items: center;
+  flex: 1;
 `
 const NavigationRight = styled.div`
   display: flex;
@@ -33,14 +34,13 @@ const NavigationRight = styled.div`
   text-align: 'right';
 `
 
-const NavigationLeftLink = styled.a`
-  color: #7b8798;
-  font-size: 1rem;
-  margin: 1.25em;
+const LeftLink = styled.a`
+  color: ${(props) => props.theme.palette.text.light};
   text-decoration: none;
-
-  transition: filter 400ms;
+  margin: 1.25em;
+  font-size: 1rem;
   cursor: pointer;
+  transition: filter 400ms;
 
   &:hover,
   &:active {
@@ -50,13 +50,12 @@ const NavigationLeftLink = styled.a`
 `
 
 const NavigationRightLink = styled.a`
-  color: #ffffff;
-  font-size: 1rem;
-  margin: 1.25em;
+  color: ${(props) => props.theme.palette.common.white};
   text-decoration: none;
-
-  transition: filter 400ms;
+  margin: 1.25em;
+  font-size: 1rem;
   cursor: pointer;
+  transition: filter 400ms;
 
   &:hover,
   &:active {
@@ -66,48 +65,61 @@ const NavigationRightLink = styled.a`
 `
 
 const LogoContainer = styled.div`
-  color: #fd815a;
+  color: ${(props) => props.theme.palette.primary.medium};
   width: 2.5rem;
   height: 2.5rem;
 `
 
+// Side Navigation Styles
+
 const MenuButton = styled.button`
+  color: ${(props) => props.theme.palette.text.light};
   background: rgba(0, 0, 0, 0);
   border: none;
-  font-size: 1.8rem;
   padding: 0;
-
-  transition: filter 400ms;
+  //margin: 0 1.25em;
+  font-size: 1.8rem;
   cursor: pointer;
+  transition: filter 400ms;
 
   &:hover,
   &:active {
-    filter: opacity(0.85);
+    filter: brightness(0.85);
   }
 `
 
 const SideNavigationContainer = styled.nav`
-  width: 100%;
-  position: fixed;
   display: 'flex';
-  background-color: #ffffff;
+  position: fixed;
+  color: ${(props) => props.theme.palette.text.dark};
+  background-color: ${(props) => props.theme.palette.text.dark};
+  width: 100%;
   height: 100vh;
   transform: ${(props) =>
-    props.isOpen ? 'translateX(0%)' : 'translateX(-100%)'};
+    props.isOpen ? 'translateX(0%)' : 'translateX(100%)'};
 
   transition: transform 800ms ease-in-out;
 `
 
 const SideNavigationLink = styled.a`
   display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  font-size: 1.5rem;
+  color: ${(props) => props.theme.palette.text.lightest};
   width: 50%;
   margin-top: 3rem;
+  text-align: center;
+  font-size: 1.5rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter 400ms;
 
   @media (max-width: ${(props) => props.theme.breakpoints.sm + 'px'}) {
     width: 100%;
+  }
+
+  &:hover,
+  &:active {
+    filter: brightness(0.85);
+    text-decoration: underline;
   }
 `
 
@@ -131,28 +143,28 @@ function Navigation(): ReactElement {
   return (
     <ThemeProvider theme={theme}>
       {isCondensed !== undefined ? (
-        <NavigationContainer>
+        <MainNavigationContainer>
           <NavigationLeft>
             <Link href="/">
-              <NavigationLeftLink style={{ marginLeft: 0 }}>
+              <LeftLink style={{ marginLeft: 0 }}>
                 <LogoContainer>
                   <Icon type="logo" />
                 </LogoContainer>
-              </NavigationLeftLink>
+              </LeftLink>
             </Link>
             {!isCondensed ? (
               <>
                 <Link href="/">
-                  <NavigationLeftLink>Products</NavigationLeftLink>
+                  <LeftLink>Products</LeftLink>
                 </Link>
                 <Link href="/">
-                  <NavigationLeftLink>Features</NavigationLeftLink>
+                  <LeftLink>Features</LeftLink>
                 </Link>
                 <Link href="/">
-                  <NavigationLeftLink>Enterprise</NavigationLeftLink>
+                  <LeftLink>Enterprise</LeftLink>
                 </Link>
                 <Link href="/">
-                  <NavigationLeftLink>Company</NavigationLeftLink>
+                  <LeftLink>Company</LeftLink>
                 </Link>
               </>
             ) : (
@@ -175,26 +187,27 @@ function Navigation(): ReactElement {
               <MenuButton onClick={() => setIsOpen(!isOpen)}>☰</MenuButton>
             )}
           </NavigationRight>
-        </NavigationContainer>
+        </MainNavigationContainer>
       ) : (
         ''
       )}
 
       <SideNavigationContainer isOpen={isOpen}>
-        <NavigationContainer>
-          <NavigationLeft>
+        <MainNavigationContainer>
+          <NavigationLeft style={{ visibility: 'hidden' }}>
             <Link href="/">
-              <NavigationLeftLink style={{ marginLeft: 0 }}>
+              <LeftLink style={{ marginLeft: 0 }}>
                 <LogoContainer>
                   <Icon type="logo" />
                 </LogoContainer>
-              </NavigationLeftLink>
+              </LeftLink>
             </Link>
           </NavigationLeft>
           <NavigationRight>
             <MenuButton onClick={() => setIsOpen(!isOpen)}>✕</MenuButton>
           </NavigationRight>
-        </NavigationContainer>
+        </MainNavigationContainer>
+        <br />
         <br />
         <br />
         <br />
@@ -205,16 +218,16 @@ function Navigation(): ReactElement {
           <SideNavigationLink>Features</SideNavigationLink>
         </Link>
         <Link href="/">
-          <SideNavigationLink>Features</SideNavigationLink>
+          <SideNavigationLink>Enterprise</SideNavigationLink>
         </Link>
         <Link href="/">
-          <SideNavigationLink>Features</SideNavigationLink>
+          <SideNavigationLink>Company</SideNavigationLink>
         </Link>
         <Link href="/">
-          <SideNavigationLink>Features</SideNavigationLink>
+          <SideNavigationLink>Sign In</SideNavigationLink>
         </Link>
         <Link href="/">
-          <SideNavigationLink>Features</SideNavigationLink>
+          <SideNavigationLink>Download</SideNavigationLink>
         </Link>
       </SideNavigationContainer>
     </ThemeProvider>
@@ -222,40 +235,3 @@ function Navigation(): ReactElement {
 }
 
 export default Navigation
-
-/*
-<NavigationLeft>
-          <Link href="/">
-            <NavigationLeftLink>
-              <LogoContainer>
-                <Icon type="logo" />
-              </LogoContainer>
-            </NavigationLeftLink>
-          </Link>
-          <Link href="/products">
-            <NavigationLeftLink>Products</NavigationLeftLink>
-          </Link>
-          <Link href="/features">
-            <NavigationLeftLink>Features</NavigationLeftLink>
-          </Link>
-          <Link href="/enterprise">
-            <NavigationLeftLink>Enterprise</NavigationLeftLink>
-          </Link>
-          <Link href="/company">
-            <NavigationLeftLink>Company</NavigationLeftLink>
-          </Link>
-          <Link href="/company">
-            <NavigationLeftLink>Sign In</NavigationLeftLink>
-          </Link>
-          <Link href="/company">
-            <NavigationLeftLink>Download</NavigationLeftLink>
-          </Link>
-          <Link href="/company">
-            <NavigationLeftLink>
-              <span style={{ fontSize: '1.5rem' }}>☰</span>
-            </NavigationLeftLink>
-          </Link>
-        </NavigationLeft>
-*/
-
-// MenuButton not aligned
